@@ -1,4 +1,4 @@
-## Regenerate CSV files for each trip
+# Regenerate CSV files for each trip (regenerate all the trips from the pickle files)
 
 #### Create Trip Csv files from pickle files:
 * **Note**: Due to the huge file size, the pickle files are stored in *10.0.0.7/home/vijay/pickleFiles*. Makesure to download and place that folder in the parent folder

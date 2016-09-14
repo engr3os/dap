@@ -1,17 +1,17 @@
-## Extract CAN data, face features and hand features from raw face and hand images
+# Extract CAN data, face features and hand features from raw face and hand images
 
 **Note:** Due to the large size of the data, I only included histograms and extracted hand feature text files in this repo. For full data, go to *10.0.0.7/home/vijay/processed/*.
 
 Also you need to be logged into 10.0.0.7 (artemis). This utilizes the dataset available at *10.0.0.7/mnt/disk1/polysync/polysync_processed/*
 
-##### Pickle CAN, obd, object logs from 10.0.0.7/mnt/disk1/polysync/polysync_processed:
+#### Pickle CAN, obd, object logs from 10.0.0.7/mnt/disk1/polysync/polysync_processed:
 * cd ../scripts
 * python generatePickle.py 
     * This will use Tobi's CAN data extractor tool to generate pickle files for each trip from files from *10.0.0.7/mnt/disk1/polysync/polysync_processed/*
 	* The pickle files will be stored in [../pickleFiles](../pickleFiles)
 
 
-##### Face Points extraction:
+#### Face Points extraction:
 * cd ../scripts
 * python [faceFeatureExtraction.py](../scripts/faceFeatureExtraction.py)
 	* Rotates the images in *10.0.0.7/mnt/disk1/polysync/polysync_processed* folder by folder and runs ``` 
@@ -19,13 +19,13 @@ Also you need to be logged into 10.0.0.7 (artemis). This utilizes the dataset av
 to output the face feature points from all the images to the folder [../processed/face_points](face_points)
 	* if you want to save the post-processed images too, add -iodir parameter
 
-##### Histogram calculation from face features:
+#### Histogram calculation from face features:
 * cd ../scripts
 * python [histogramCreation.py](../scripts/histogramCreation.py)
     * This creates the angular and 2-D histograms of consequtive point files (or timestamps) for each of the folders in [/face_points](face_points)
     * Creates a csv file for each trip inside the folder [/histograms](/histograms)
 
-##### Hand Feature extraction:
+#### Hand Feature extraction:
 * cd ../scripts
 * python [handFeatureDetection.py](../scripts/handFeatureDetection.py) --gpu (0 or 1 or 2 or 3)
 	* This will access the file at *10.0.0.7/home/tzhou/Software/py-faster-rcnn/tools/demo_modified.py* which runs a fast RNN using a pre trained model to identify the hand locations

@@ -79,7 +79,7 @@ for file in dataFiles:
     folder = file[:file.index('_')]
     #train_test_index = sessionIndex.train_or_test_for_pca[sessionIndex.timestamp==int(folder)].values
     """for demo"""
-    train_test_index = sessionIndex.train_or_test_for_pca_demo[sessionIndex.timestamp==int(folder)].values
+    train_test_index = sessionIndex.train_or_test_for_demo[sessionIndex.timestamp==int(folder)].values
 
 
     data = pd.read_csv(path+file, usecols = columns)

@@ -44,7 +44,7 @@ sessionIndexFile = "sessionIndex.csv"
 sessionIndex = pd.read_csv(sessionIndexFile)
 
 badTripsForPCA = ['1459973682141964','1459980768823544']  #the meaning is that these two trips have difference baselines in PCA which contorts the whole PCA data while scaling
-tripsForTestDemo = sessionIndex.timestamp[sessionIndex.train_or_test_for_pca_demo==1].tolist()
+tripsForTestDemo = sessionIndex.timestamp[sessionIndex.train_or_test_for_demo==1].tolist()
 tripsForTestDemo = [str(i).strip() for i in tripsForTestDemo]
 print "tripsForTestDemo: ", tripsForTestDemo
 

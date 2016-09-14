@@ -1,4 +1,4 @@
-session_id,timestamp,driver,csv_files_extracted_successfully_from_CAN_data,train_or_test_for_pca_demo,demo
+session_id,timestamp,driver,csv_files_extracted_successfully_from_CAN_data,train_or_test_for_demo,demo
 1,1458337615622674,eric,1,0,
 2,1458587118485511,eric,1,0,
 3,1458770010035679,eric,1,0,
