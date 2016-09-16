@@ -18,7 +18,7 @@ This code base is for the driver activity prediction project. Please contact Vij
 #### For Toyota data (both for balanced testing and demo):
 * cd scripts/network_training/
 * sudo python [MultiRNN_brake_revised_tobi.py](scripts/network_training/MultiRNN_brake_revised_tobi.py)
-	* **Imp:** Set whether you want to include braking zones *(zones where the brake pressure is non zero)* in the test set or not using the parameter *include_braking_zones* in the script
+	* **Imp:** Set whether you want to include braking zones *(zones where the brake pressure is non zero)* in the test set or not using the parameter **'include_braking_zones'** in the script
 	* Set the proper location of the trip generated numpy files
 	* You can set whether to used a saved trained model or run freshly by setting the **'load_model'** parameter
 	* Network is trained over the data and provides multiple plots using the [postprocessing.py](scripts/network_training/postprocessing.py) script
@@ -41,7 +41,7 @@ This code base is for the driver activity prediction project. Please contact Vij
 * cd scripts/network_training/
 * python [postprocessing.py](scripts/network_training/postprocessing.py)
 	* Provide the correct locations of text files of predicted labels, actual labels and raw probabilities.
-	* Using the *savePredLabelsTripWise* parameter, you can set whether to save the predicted and actual label csv files trip wise. 
+	* Using the **'savePredLabelsTripWise'** parameter, you can set whether to save the predicted and actual label csv files trip wise. 
 		* **Note:** You will need to the trip csv files under the folder [../../tripCsvFiles](tripCsvFiles) for this
 		* The csv files will be saved in [./trip_wise_pred_label](scripts/network_training/trip_wise_pred_label)
 
