@@ -401,7 +401,7 @@ def processResults(resultLabel,testLabel,rawLabel,line_color = 'b',show=0):
 
 			
 			pred_label_tosave[np.logical_and(pred_label_tosave==2, np.array(brakePressure)==0)] = 0  #removing anamolies
-			y_label_tocompare[np.logical_and(y_label_tocompare==2, np.array(brakePressure)==0)] = 0  #removing anamolies
+			#y_label_tocompare[np.logical_and(y_label_tocompare==2, np.array(brakePressure)==0)] = 0  #removing anamolies
 			#errorPoints = [i for i in range(len(pred_label_tosave)) if pred_label_tosave[i] != y_label_tocompare[i]]
 
 
@@ -409,7 +409,6 @@ def processResults(resultLabel,testLabel,rawLabel,line_color = 'b',show=0):
 			brakeEvents = data['sparseBrakeEvents'].values.tolist()
 			#slicing 5 sec non brake events
 			emptyBrakeEvents = data['emptyBrakeEvents'].tolist()
-
 
 			sparseZeroCros = np.array([i for i, x in enumerate(brakeEvents) if x == 1])
 			emptypoints = np.array([i for i, x in enumerate(emptyBrakeEvents) if x == 1])
