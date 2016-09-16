@@ -20,11 +20,11 @@ Also you need to be logged into 10.0.0.7 (artemis). This utilizes the dataset av
 to output the face feature points from all the images to the folder [../processed/face_points](face_points)
 	* if you want to save the post-processed images too, add -iodir parameter
 
-#### Histogram calculation from face features:
+#### Histogram calculation from face features: 
 * cd ../scripts
 * python [histogramCreation.py](../scripts/histogramCreation.py)
     * This creates the angular and 2-D histograms of consequtive point files (or timestamps) for each of the folders in [/face_points](face_points)
-    * Creates a csv file for each trip inside the folder [/histograms](/histograms)
+    * Creates a csv file for each trip inside the folder [/histograms](histograms)
 
 #### Hand Feature extraction:
 * cd ../scripts
@@ -39,5 +39,5 @@ to output the face feature points from all the images to the folder [../processe
 * ```python HandCamReader_modified.py --folder "sessionNumber" --copydata (use 1 if you need to copy from 10.0.0.7/mnt/disk1/polysync/polysync_processed else 0) --res (use 1 if you want to remove existing data and recopy from that polysync_processed location else 0)```
 	* The process takes you through a set of steps to choose the points on the steering wheel for reference when using the extracted hand location
 	* The computed data is stored in */home/tzhou/Workspace/interns/BrakePrediction/data/*
-* I manually copied this data to */home/vijay/processed/histograms_processed/* for future use
+* I manually copied this data to [/histograms_processed](histograms_processed) for future use
 
