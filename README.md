@@ -17,24 +17,33 @@ This code base is for the driver activity prediction project. Please contact Vij
 
 #### For Toyota data (both for balanced testing and demo):
 * cd scripts/network_training/
-* python [MultiRNN_brake_revised_tobi.py](scripts/network_training/MultiRNN_brake_revised_tobi.py)
+* sudo python [MultiRNN_brake_revised_tobi.py](scripts/network_training/MultiRNN_brake_revised_tobi.py)
+	* **Imp:** Set whether you want to include braking zones *(zones where the brake pressure is non zero)* in the test set or not using the parameter *include_braking_zones* in the script
 	* Set the proper location of the trip generated numpy files
 	* You can set whether to used a saved trained model or run freshly by setting the **'load_model'** parameter
 	* Network is trained over the data and provides multiple plots using the [postprocessing.py](scripts/network_training/postprocessing.py) script
-	* The trained model is stored in [./trainedModel](scripts/network_training/trainedModel). The script also stores the predicted, actual and raw probability values in .txt files
+	* The trained model is stored in [./trainedModel](scripts/network_training/trainedModel). The script also stores the predicted, actual (including braking zones if any) and raw probability values in .txt files
 * __Note (Imp)__: If you are using test data including braking zones _(zones where brake pressure is non zero)_ then:
 	* The test accuracy displayed while training isn't correct. Wait for the metrics to be displayed once training is done 
 	* The metrics are calculated only for the non-braking zones _(zones where brake pressure is zero)_
 
 #### For brain4cars data:
 * cd scripts/network_training/
-* python [MultiRNN_brake_revised_tobi_brain4cars.py](scripts/network_training/MultiRNN_brake_revised_tobi_brain4cars.py)
+* sudo python [MultiRNN_brake_revised_tobi_brain4cars.py](scripts/network_training/MultiRNN_brake_revised_tobi_brain4cars.py)
 	* Set the proper location of the brain4cars generated numpy files
 	* You can set whether to used a saved trained model or run freshly by setting the **'load_model'** parameter
 	* Network is trained over the data and plots precision and recall curve for all classes over the 5 sec interval
 	* Network is trained over the data and provides multiple plots using the [postprocessing.py](scripts/network_training/postprocessing.py) script
 	* The trained model is stored in [./trainedModel](scripts/network_training/trainedModel). The script also stores the predicted, actual and raw probability values in .txt files
 
+
+#### Manual generation of metrics:
+* cd scripts/network_training/
+* python [postprocessing.py](scripts/network_training/postprocessing.py)
+	* Provide the correct locations of text files of predicted labels, actual labels and raw probabilities.
+	* Using the *savePredLabelsTripWise* parameter, you can set whether to save the predicted and actual label csv files trip wise. 
+		* **Note:** You will need to the trip csv files under the folder [../../tripCsvFiles](tripCsvFiles) for this
+		* The csv files will be saved in [./trip_wise_pred_label](scripts/network_training/trip_wise_pred_label)
 
 #####
 
@@ -53,7 +62,6 @@ This code base is for the driver activity prediction project. Please contact Vij
 * cd scripts
 * Set the training and testing trips in [*sessionIndex.csv*](scripts/sessionIndex.csv] under the column *"train_or_test_for_demo"*
 * python [dataCreationForDemo.py](scripts/dataCreationForDemo.py):
-	* **Imp:** Set whether you want to include braking zones *(zones where the brake pressure is non zero)* in the test set or not in the script
 	* You can set the number of PCA components too in the file
 	* The script will take files *"xxx_feature_brake_agg.csv"* from the folder [../tripCsvFiles](tripCsvFiles)
 	* Multiple kinds on numpy files are created. The file names are self explanatory. The numpy files are stored in [../data_for_network_balanced_demo](data_for_network_balanced_demo)

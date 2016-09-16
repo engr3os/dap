@@ -1,0 +1,127 @@
+Data used: PCA data
+
+##############################################################################
+Timestamp wise:
+
+ephesus
+
+Total no. of samples  158250
+Ratio of positive samples in set:  0.4
+Size of input:  (125250, 20)
+Done training
+hit, count, accuracy:  (20696, 33000, 0.6271515151515151)
+Training accuracy: 99.5
+
+Running max:
+time to action, piecewise accuracy, count_rm : (4.9, 0.6197, 660)
+time to action, piecewise accuracy, count_rm : (4.8, 0.6182, 1320)
+time to action, piecewise accuracy, count_rm : (4.7, 0.6202, 1980)
+time to action, piecewise accuracy, count_rm : (4.6, 0.6227, 2640)
+time to action, piecewise accuracy, count_rm : (4.5, 0.6221, 3300)
+time to action, piecewise accuracy, count_rm : (4.4, 0.6210, 3960)
+time to action, piecewise accuracy, count_rm : (4.3, 0.6229, 4620)
+time to action, piecewise accuracy, count_rm : (4.2, 0.6214, 5280)
+time to action, piecewise accuracy, count_rm : (4.1, 0.6190, 5940)
+time to action, piecewise accuracy, count_rm : (4.0, 0.6182, 6600)
+time to action, piecewise accuracy, count_rm : (3.9, 0.6183, 7260)
+time to action, piecewise accuracy, count_rm : (3.8, 0.6189, 7920)
+time to action, piecewise accuracy, count_rm : (3.7, 0.6203, 8580)
+time to action, piecewise accuracy, count_rm : (3.6, 0.6211, 9240)
+time to action, piecewise accuracy, count_rm : (3.5, 0.6217, 9900)
+time to action, piecewise accuracy, count_rm : (3.4, 0.6223, 10560)
+time to action, piecewise accuracy, count_rm : (3.3, 0.6224, 11220)
+time to action, piecewise accuracy, count_rm : (3.2, 0.6223, 11880)
+time to action, piecewise accuracy, count_rm : (3.1, 0.6225, 12540)
+time to action, piecewise accuracy, count_rm : (3.0, 0.6229, 13200)
+time to action, piecewise accuracy, count_rm : (2.9, 0.6231, 13860)
+time to action, piecewise accuracy, count_rm : (2.8, 0.6231, 14520)
+time to action, piecewise accuracy, count_rm : (2.7, 0.6239, 15180)
+time to action, piecewise accuracy, count_rm : (2.6, 0.6235, 15840)
+time to action, piecewise accuracy, count_rm : (2.5, 0.6237, 16500)
+time to action, piecewise accuracy, count_rm : (2.4, 0.6242, 17160)
+time to action, piecewise accuracy, count_rm : (2.3, 0.6243, 17820)
+time to action, piecewise accuracy, count_rm : (2.2, 0.6240, 18480)
+time to action, piecewise accuracy, count_rm : (2.1, 0.6241, 19140)
+time to action, piecewise accuracy, count_rm : (2.0, 0.6242, 19800)
+time to action, piecewise accuracy, count_rm : (1.9, 0.6245, 20460)
+time to action, piecewise accuracy, count_rm : (1.8, 0.6249, 21120)
+time to action, piecewise accuracy, count_rm : (1.7, 0.6251, 21780)
+time to action, piecewise accuracy, count_rm : (1.6, 0.6257, 22440)
+time to action, piecewise accuracy, count_rm : (1.5, 0.6260, 23100)
+time to action, piecewise accuracy, count_rm : (1.4, 0.6265, 23760)
+time to action, piecewise accuracy, count_rm : (1.3, 0.6266, 24420)
+time to action, piecewise accuracy, count_rm : (1.2, 0.6270, 25080)
+time to action, piecewise accuracy, count_rm : (1.1, 0.6273, 25740)
+time to action, piecewise accuracy, count_rm : (1.0, 0.6273, 26400)
+time to action, piecewise accuracy, count_rm : (0.9, 0.6276, 27060)
+time to action, piecewise accuracy, count_rm : (0.8, 0.6275, 27720)
+time to action, piecewise accuracy, count_rm : (0.7, 0.6276, 28380)
+time to action, piecewise accuracy, count_rm : (0.6, 0.6277, 29040)
+time to action, piecewise accuracy, count_rm : (0.5, 0.6275, 29700)
+time to action, piecewise accuracy, count_rm : (0.4, 0.6275, 30360)
+time to action, piecewise accuracy, count_rm : (0.3, 0.6277, 31020)
+time to action, piecewise accuracy, count_rm : (0.2, 0.6274, 31680)
+time to action, piecewise accuracy, count_rm : (0.1, 0.6272, 32340)
+time to action, piecewise accuracy, count_rm : (0.0, 0.6272, 33000)
+time to action, piecewise accuracy after running max, count_rm : (4.9, 0.6197, 660)
+time to action, piecewise accuracy after running max, count_rm : (4.8, 0.6197, 1320)
+time to action, piecewise accuracy after running max, count_rm : (4.7, 0.6182, 1980)
+time to action, piecewise accuracy after running max, count_rm : (4.6, 0.6178, 2640)
+time to action, piecewise accuracy after running max, count_rm : (4.5, 0.6194, 3300)
+time to action, piecewise accuracy after running max, count_rm : (4.4, 0.6202, 3960)
+time to action, piecewise accuracy after running max, count_rm : (4.3, 0.6201, 4620)
+time to action, piecewise accuracy after running max, count_rm : (4.2, 0.6203, 5280)
+time to action, piecewise accuracy after running max, count_rm : (4.1, 0.6202, 5940)
+time to action, piecewise accuracy after running max, count_rm : (4.0, 0.6208, 6600)
+time to action, piecewise accuracy after running max, count_rm : (3.9, 0.6212, 7260)
+time to action, piecewise accuracy after running max, count_rm : (3.8, 0.6216, 7920)
+time to action, piecewise accuracy after running max, count_rm : (3.7, 0.6212, 8580)
+time to action, piecewise accuracy after running max, count_rm : (3.6, 0.6212, 9240)
+time to action, piecewise accuracy after running max, count_rm : (3.5, 0.6210, 9900)
+time to action, piecewise accuracy after running max, count_rm : (3.4, 0.6212, 10560)
+time to action, piecewise accuracy after running max, count_rm : (3.3, 0.6213, 11220)
+time to action, piecewise accuracy after running max, count_rm : (3.2, 0.6215, 11880)
+time to action, piecewise accuracy after running max, count_rm : (3.1, 0.6216, 12540)
+time to action, piecewise accuracy after running max, count_rm : (3.0, 0.6219, 13200)
+time to action, piecewise accuracy after running max, count_rm : (2.9, 0.6222, 13860)
+time to action, piecewise accuracy after running max, count_rm : (2.8, 0.6226, 14520)
+time to action, piecewise accuracy after running max, count_rm : (2.7, 0.6229, 15180)
+time to action, piecewise accuracy after running max, count_rm : (2.6, 0.6231, 15840)
+time to action, piecewise accuracy after running max, count_rm : (2.5, 0.6232, 16500)
+time to action, piecewise accuracy after running max, count_rm : (2.4, 0.6233, 17160)
+time to action, piecewise accuracy after running max, count_rm : (2.3, 0.6233, 17820)
+time to action, piecewise accuracy after running max, count_rm : (2.2, 0.6234, 18480)
+time to action, piecewise accuracy after running max, count_rm : (2.1, 0.6235, 19140)
+time to action, piecewise accuracy after running max, count_rm : (2.0, 0.6234, 19800)
+time to action, piecewise accuracy after running max, count_rm : (1.9, 0.6233, 20460)
+time to action, piecewise accuracy after running max, count_rm : (1.8, 0.6232, 21120)
+time to action, piecewise accuracy after running max, count_rm : (1.7, 0.6231, 21780)
+time to action, piecewise accuracy after running max, count_rm : (1.6, 0.6231, 22440)
+time to action, piecewise accuracy after running max, count_rm : (1.5, 0.6232, 23100)
+time to action, piecewise accuracy after running max, count_rm : (1.4, 0.6232, 23760)
+time to action, piecewise accuracy after running max, count_rm : (1.3, 0.6233, 24420)
+time to action, piecewise accuracy after running max, count_rm : (1.2, 0.6236, 25080)
+time to action, piecewise accuracy after running max, count_rm : (1.1, 0.6236, 25740)
+time to action, piecewise accuracy after running max, count_rm : (1.0, 0.6238, 26400)
+time to action, piecewise accuracy after running max, count_rm : (0.9, 0.6238, 27060)
+time to action, piecewise accuracy after running max, count_rm : (0.8, 0.6240, 27720)
+time to action, piecewise accuracy after running max, count_rm : (0.7, 0.6240, 28380)
+time to action, piecewise accuracy after running max, count_rm : (0.6, 0.6241, 29040)
+time to action, piecewise accuracy after running max, count_rm : (0.5, 0.6243, 29700)
+time to action, piecewise accuracy after running max, count_rm : (0.4, 0.6244, 30360)
+time to action, piecewise accuracy after running max, count_rm : (0.3, 0.6245, 31020)
+time to action, piecewise accuracy after running max, count_rm : (0.2, 0.6246, 31680)
+time to action, piecewise accuracy after running max, count_rm : (0.1, 0.6246, 32340)
+time to action, piecewise accuracy after running max, count_rm : (0.0, 0.6246, 33000)
+
+framewise accuracy:  0.627272727273
+##############################################################################
+
+##############################################################################
+First Frame:
+Accuracy = 0.5954545454545455
+##############################################################################
+
+##############################################################################
+Complete scene data of 5 seconds:
+Accuracy = 0.6

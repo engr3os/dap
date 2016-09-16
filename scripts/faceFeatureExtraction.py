@@ -51,7 +51,7 @@ for dir in dirlist:
 
 			if not os.path.isdir(savepath_folder + dir + "Feature"):
 				os.makedirs(savepath_folder + dir + "Feature")
-			args = "/home/vijay/CLM-framework-master/bin/SimpleCLMImg -fdir " + imgsavepath + " -ofdir "+ savepath_folder + dir + "Feature/ -clmwild"
+			args = "../CLM-framework-master/bin/SimpleCLMImg -fdir " + imgsavepath + " -ofdir "+ savepath_folder + dir + "Feature/ -clmwild"
 			os.system(args)
 			print "Finished processing %s" %dir
 			os.system("rm -rf " + imgsavepath[:-1])  #deleting rotated images

@@ -25,15 +25,18 @@ def getnorm(train,test,eventWindow,n):
     test = np.reshape(test,[-1,eventWindow,n])
     return train, test
 
+plt.close('all')
 path = '../tripCsvFiles/'
 savepath_balanced_demo = '../data_for_network_balanced_demo/'
 
-"""set this parameter to include or not include braking zones (zones where the brake pressure is non-zero"""
-include_braking_zones = 1
+
+"""set this parameter if you want to see the brake points selected by the system"""
+plotBrakePoints = 1  
 
 num_components = 20 #the number of components for PCA. This should be equal to or greater than the total number of features
 eventWindow = 50 #meaning 5 second window
 buffer = 1.5 #meaning we are going to have 1.5 timess the no. of neg samples than positive samples
+
 
 
 files = os.listdir(path)
@@ -46,6 +49,7 @@ sessionIndex = pd.read_csv(sessionIndexFile)
 badTripsForPCA = ['1459973682141964','1459980768823544']  #the meaning is that these two trips have difference baselines in PCA which contorts the whole PCA data while scaling
 tripsForTestDemo = sessionIndex.timestamp[sessionIndex.train_or_test_for_demo==1].tolist()
 tripsForTestDemo = [str(i).strip() for i in tripsForTestDemo]
+tripsForTestDemo.sort()
 print "tripsForTestDemo: ", tripsForTestDemo
 
 for file in files:
@@ -153,10 +157,10 @@ print "Shape of Y_train_balanced:",Y_train_balanced.shape
 ##########################################################################################
 """creating test data"""
 
-inputMatrix = []
-inputTargetMatrix = []
-countBrakeEvents = 0
-countNonBrakeEvents = 0
+# inputMatrix = []
+# inputTargetMatrix = []
+countBrakeEvents = {}
+countNonBrakeEvents = {}
 fig = 0
 print "Started creating test data..."
 testTargetList = []
@@ -164,49 +168,64 @@ testDataList = []
 for file in dataFilesTest:
     print "Processing file %s" %file
     data = pd.read_csv(path+file, usecols = columns)
+    num_samples = int(len(data)/eventWindow)
+    data = data[:num_samples*eventWindow]
     inputData = data[columns_in_data].values.tolist()
-    testTargetListPerTrip = [None]*len(inputData)
+    testTargetListPerTrip = [2]*len(inputData)
+    countBrakeEvents[file] = 0
+    countNonBrakeEvents[file]=0
+
     brakePressure = data['pbrk'].values.tolist()
 
     #slicing 5 sec brake events
     brakeEvents = data['sparseBrakeEvents'].values.tolist()
+    chosenBrakeEvents = [0]*len(brakeEvents)
+    chosenNonBrakeEvents = [0]*len(brakeEvents)
     #slicing 5 sec non brake events
     emptyBrakeEvents = data['emptyBrakeEvents'].tolist()
     for i in range(len(brakeEvents)):
         if brakeEvents[i] ==1 and i-eventWindow >=0 and 0 not in testTargetListPerTrip[i-eventWindow:i] and 1 not in testTargetListPerTrip[i-eventWindow:i]: # the last part is to make sure event and no event zones dont overlap
-            inputMatrix.append(inputData[i-eventWindow:i])
-            inputTargetMatrix.append([1]*eventWindow)
+            # inputMatrix.append(inputData[i-eventWindow:i])
+            # inputTargetMatrix.append([1]*eventWindow)
             testTargetListPerTrip[i-eventWindow:i] = [1]*eventWindow
-            countBrakeEvents +=1
+            countBrakeEvents[file] +=1
+            chosenBrakeEvents[i]=1
             
         elif emptyBrakeEvents[i] ==1 and i-eventWindow >=0 and 1 not in testTargetListPerTrip[i-eventWindow:i] and 0 not in testTargetListPerTrip[i-eventWindow:i]: # the last part is to make sure event and no event zones dont overlap
-            inputMatrix.append(inputData[i-eventWindow:i])
-            inputTargetMatrix.append([0]*eventWindow)
+            # inputMatrix.append(inputData[i-eventWindow:i])
+            # inputTargetMatrix.append([0]*eventWindow)
             testTargetListPerTrip[i-eventWindow:i]=[0]*eventWindow
-            countNonBrakeEvents +=1
+            countNonBrakeEvents[file] +=1
+            chosenNonBrakeEvents[i]=1
           
     sparseZeroCros = np.array([i for i, x in enumerate(brakeEvents) if x == 1])
     emptypoints = np.array([i for i, x in enumerate(emptyBrakeEvents) if x == 1])
+    chosenBrakeEventsPoints = np.array([i for i, x in enumerate(chosenBrakeEvents) if x == 1])
+    chosenNonBrakeEventsPoints = np.array([i for i, x in enumerate(chosenNonBrakeEvents) if x == 1])
+
     brakePressure = np.array(brakePressure)
-    """
-    plt.figure(fig)        
-    plt.plot(brakePressure, 'g-')
-    plt.plot(sparseZeroCros,brakePressure[sparseZeroCros], 'r*', markersize=10)
-    plt.title('brake pressure sparse zero crossing')
+    if plotBrakePoints:
+        plt.figure(fig)        
+        plt.plot(brakePressure, 'g-')
+        plt.plot(sparseZeroCros,brakePressure[sparseZeroCros], 'r*', markersize=10, label='all braking points')
+        plt.plot(emptypoints, brakePressure[emptypoints], 'g*', markersize=10, label='all non braking points')
+        plt.plot(chosenBrakeEventsPoints, brakePressure[chosenBrakeEventsPoints]+0.2, 'rx', markersize =10, label='chosen braking points)
+        plt.plot(chosenNonBrakeEventsPoints, brakePressure[chosenNonBrakeEventsPoints]+0.1, 'gx', markersize =10, label='chosen non braking points')
+        plt.title('brake and non brake points for trip '+file[:file.index('_')])
+        plt.xlabel('time in ms')
+        plt.ylabel('brake pressure')
+        plt.legend(loc='upper right')
+        fig +=1
     
-    plt.figure(fig)        
-    plt.plot(brakePressure, 'g-')
-    plt.plot(emptypoints, brakePressure[emptypoints], 'g*', markersize=10)
-    plt.title('brake pressure empty points')
-    fig+=1
-    """
     
-      
-    testDataListPerTrip = [inputData[i*eventWindow:(i+1)*eventWindow] for i in range(int(len(inputData)/eventWindow))] #creating test data with braking zones
+    
+    
+    print "Shape of inputData: ", np.array(inputData).shape
+    testDataListPerTrip = np.array([inputData[i*eventWindow:(i+1)*eventWindow] for i in range(num_samples)]) #creating test data with braking zones
 
-    print np.array(testDataListPerTrip).shape
+    print "Shape of testDataListPerTrip:" ,testDataListPerTrip.shape
 
-    testTargetListPerTrip = np.array(testTargetListPerTrip[:len(testDataListPerTrip)*eventWindow])
+    #testTargetListPerTrip = np.array(testTargetListPerTrip[:len(testDataListPerTrip)*eventWindow])
     testTargetListPerTrip = np.reshape(testTargetListPerTrip,[-1, eventWindow])
 
     print "Sum of testTargetListPerTrip :", sum([i for i in testTargetListPerTrip.flatten() if i==0 or i==1])
@@ -216,21 +235,24 @@ for file in dataFilesTest:
     testTargetList.extend(testTargetListPerTrip)
     print "Shape of testDataList: ", np.array(testDataList).shape
     print "Shape of testTargetList: ",np.array(testTargetList).shape 
+    print "Number of sparse braking events in this trip:%d" %countBrakeEvents[file]
+    print "Number  of non braking events in this trip: %d" %countNonBrakeEvents[file]
 
     print "Done processing file %s" %file
 
-print "Total no. of sparse braking events in Test:%d" %countBrakeEvents
-print "Total no. of non braking events in Test: %d" %countNonBrakeEvents
+
+print "Total no. of sparse braking events in Test:%d" %sum(countBrakeEvents.values())
+print "Total no. of non braking events in Test: %d" %sum(countNonBrakeEvents.values())
 
 
 
-"""here we decide what data to create depending on whether to include or not include braking zones"""
-if include_braking_zones:
-    X_test = np.array(testDataList)
-    Y_test = np.array(testTargetList)
-else:
-    X_test = np.array(inputMatrix)
-    Y_test = np.array(inputTargetMatrix)
+
+#if 1:
+X_test = np.array(testDataList)
+Y_test = np.array(testTargetList)
+# else:
+#     X_test = np.array(inputMatrix)
+#     Y_test = np.array(inputTargetMatrix)
 
 print "Shape of X_test:", X_test.shape
 print "Shape of Y_test", Y_test.shape
@@ -256,5 +278,6 @@ np.save(savepath_balanced_demo+'X_test_balanced.npy',X_test)
 np.save(savepath_balanced_demo+'X_train_balanced_norm.npy',X_train_balanced_norm)
 np.save(savepath_balanced_demo+'X_test_balanced_norm.npy',X_test_norm)
 
+plt.show()
 
-
+    

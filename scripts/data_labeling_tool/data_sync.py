@@ -13,7 +13,7 @@ from os.path import expanduser
 # The extractor(folder_name) function is in 'home/olabiyi'. Please set sys.path before using this function or script if passing pickle file argument.
  
 sys.path.append(expanduser("~"))
-from data_labeling_tool.data_extractor import extractor
+from data_extractor import extractor
 
 def sync(file_name):
 	file_name = os.path.abspath(file_name)
@@ -46,7 +46,7 @@ if __name__ == "__main__":
 	file_name = args[0]
 	data_out = sync(file_name)
 	print "Saving extracted synced data to csv file"
-	#pickle.dump(data_out, open(os.path.split(os.getcwd())[1]+'_extr_synced.pkl','wb'))
+	pickle.dump(data_out, open(os.path.split(os.getcwd())[1]+'_extr_synced.pkl','wb'))
 	data_out.index =  data_out.index.astype(np.int64)//10**3
 	data_out.index.name = 'timestamp'
 	data_out.to_csv(os.path.split(os.getcwd())[1]+'_extr_synced.csv')

@@ -6,16 +6,17 @@ Also you need to be logged into 10.0.0.7 (artemis). This utilizes the dataset av
 
 #### Pickle CAN, obd, object logs from 10.0.0.7/mnt/disk1/polysync/polysync_processed:
 * cd ../scripts
-* python generatePickle.py 
+* python [generatePickle.py](../scripts/generatePickle.py)
     * This will use Tobi's CAN data extractor tool to generate pickle files for each trip from files from *10.0.0.7/mnt/disk1/polysync/polysync_processed/*
 	* The pickle files will be stored in [../pickleFiles](../pickleFiles)
+	* You might need sudo access for saving the pickle files
 
 
 #### Face Points extraction:
 * cd ../scripts
 * python [faceFeatureExtraction.py](../scripts/faceFeatureExtraction.py)
 	* Rotates the images in *10.0.0.7/mnt/disk1/polysync/polysync_processed* folder by folder and runs ``` 
-"/home/vijay/CLM-framework-master/bin/SimpleCLMImg -fdir " + rotated_dir + " -ofdir ../processed/face_points" + dir + "Feature/ -clmwild" ```
+"../CLM-framework-master/bin/SimpleCLMImg -fdir " + rotated_dir + " -ofdir ../processed/face_points" + dir + "Feature/ -clmwild" ```
 to output the face feature points from all the images to the folder [../processed/face_points](face_points)
 	* if you want to save the post-processed images too, add -iodir parameter
 
