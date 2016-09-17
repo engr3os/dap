@@ -5,6 +5,9 @@ This code base is for the driver activity prediction project. Please contact Vij
 * If you want to regenerate the csv files for the trips from the pickle files, read the [README.md](scripts/README.md) under [/scripts](scripts)
 * If you would want to regenerate face and hand features from raw face and hand cam images read the [README.md](processed/README.md) under [/processed](processed)
 
+**Note**: Due to the huge file size, the pickle files are stored in *10.0.0.7/home/vijay/pickleFiles*. Makesure to download and place that folder in the parent folder
+**Note:** Due to the large size of the data, I only included histograms and extracted hand feature text files in this repo. For full data, go to *10.0.0.7/home/vijay/processed/*.
+
 #####
 ## Prerequisites 
 * Have [python 2.3](https://www.python.org/download/releases/2.3/) or above installed (including sklearn, numpy and pandas packages)
